@@ -1,0 +1,16 @@
+schema {
+    query: Query
+}
+
+type Query {
+    allImages: [Image]
+    image(id: String): Image
+}
+
+type Image {
+    id
+    url: String
+    title: String
+    publisher: String
+    publishDate: String
+}
