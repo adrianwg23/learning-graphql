@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,6 +17,7 @@ public class Book {
     @Id
     private String isbn;
     private String title;
+    private LocalDate publishedDate;
     @ManyToMany(
             cascade = { CascadeType.PERSIST, CascadeType.MERGE, },
             fetch = FetchType.EAGER

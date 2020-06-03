@@ -9,7 +9,6 @@ import graphql.GraphQLException;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
 import java.util.Optional;
 
 @Component
@@ -24,7 +23,9 @@ public class BookMutationResolver implements GraphQLMutationResolver {
     }
 
     public Book createBook(BookWrapper bookWrapper) {
-        return bookRepository.save(new Book(bookWrapper.getIsbn(), bookWrapper.getTitle()));
+        Book book = new Book(bookWrapper.getIsbn(), bookWrapper.getTitle());
+        book.setPublishedDate(bookWrapper.getPublishedDate());
+        return bookRepository.save(book);
     }
 
     public Book addAuthor(Long authorId, String isbn) {

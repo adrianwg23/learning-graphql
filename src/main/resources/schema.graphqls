@@ -1,7 +1,10 @@
+scalar LocalDate
+
 type Book {
     title: String!
     isbn: String!
     authors: [Author]
+    publishedDate: LocalDate
 }
 
 type Author {
@@ -27,4 +30,5 @@ input AuthorWrapper {
 input BookWrapper {
     title: String!
     isbn: String!
+    publishedDate: LocalDate
 }
