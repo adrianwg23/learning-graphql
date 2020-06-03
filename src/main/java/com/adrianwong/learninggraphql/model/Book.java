@@ -4,11 +4,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import java.util.List;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -18,8 +16,16 @@ public class Book {
     @Id
     private String isbn;
     private String title;
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Author> authors;
+    @ManyToMany(
+            cascade = { CascadeType.PERSIST, CascadeType.MERGE, },
+            fetch = FetchType.EAGER
+    )
+    @JoinTable(
+            name = "book_author",
+            joinColumns = @JoinColumn(name = "isbn"),
+            inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
+    private Set<Author> authors;
 
     public Book(String isbn, String title) {
         this.isbn = isbn;
@@ -27,6 +33,9 @@ public class Book {
     }
 
     public void addAuthor(Author author) {
+        if (this.authors == null) {
+            this.authors = new HashSet<>();
+        }
         this.authors.add(author);
     }
 }
