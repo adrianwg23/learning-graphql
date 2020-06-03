@@ -6,8 +6,6 @@ import com.adrianwong.learninggraphql.repository.AuthorRepository;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
-
 @Component
 public class AuthorMutationResolver implements GraphQLMutationResolver {
 
@@ -19,7 +17,6 @@ public class AuthorMutationResolver implements GraphQLMutationResolver {
 
     public Author createAuthor(AuthorWrapper authorWrapper) {
         Author author = new Author(authorWrapper.getName());
-        author.setId(UUID.randomUUID().toString());
         return authorRepository.save(author);
     }
 }

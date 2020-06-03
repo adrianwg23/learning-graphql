@@ -27,7 +27,7 @@ public class BookMutationResolver implements GraphQLMutationResolver {
         return bookRepository.save(new Book(bookWrapper.getIsbn(), bookWrapper.getTitle()));
     }
 
-    public Book addAuthor(String authorId, String isbn) {
+    public Book addAuthor(Long authorId, String isbn) {
         Optional<Author> author = authorRepository.findById(authorId);
         Optional<Book> book = bookRepository.findById(isbn);
         if (author.isPresent() && book.isPresent()) {
