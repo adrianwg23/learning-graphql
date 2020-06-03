@@ -1,4 +1,10 @@
 package com.adrianwong.learninggraphql.query;
 
-public class AuthorQueryResolver {
+import graphql.kickstart.tools.GraphQLQueryResolver;
+import org.springframework.stereotype.Component;
+
+@Component
+public class AuthorQueryResolver implements GraphQLQueryResolver {
+
+
 }
