@@ -1,4 +1,4 @@
-package com.adrianwong.learninggraphql.mutation;
+package com.adrianwong.learninggraphql.resolver;
 
 import com.adrianwong.learninggraphql.model.Book;
 import com.adrianwong.learninggraphql.model.BookWrapper;

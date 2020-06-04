@@ -1,4 +1,4 @@
-package com.adrianwong.learninggraphql.query;
+package com.adrianwong.learninggraphql.resolver;
 
 import com.adrianwong.learninggraphql.model.Author;
 import com.adrianwong.learninggraphql.service.AuthorService;
