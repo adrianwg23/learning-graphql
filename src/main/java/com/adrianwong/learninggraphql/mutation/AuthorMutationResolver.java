@@ -2,21 +2,25 @@ package com.adrianwong.learninggraphql.mutation;
 
 import com.adrianwong.learninggraphql.model.Author;
 import com.adrianwong.learninggraphql.model.AuthorWrapper;
-import com.adrianwong.learninggraphql.repository.AuthorRepository;
+import com.adrianwong.learninggraphql.service.AuthorService;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AuthorMutationResolver implements GraphQLMutationResolver {
 
-    private final AuthorRepository authorRepository;
+    private final AuthorService authorService;
 
-    public AuthorMutationResolver(AuthorRepository authorRepository) {
-        this.authorRepository = authorRepository;
+    public AuthorMutationResolver(AuthorService authorService) {
+        this.authorService = authorService;
     }
 
     public Author createAuthor(AuthorWrapper authorWrapper) {
-        Author author = new Author(authorWrapper.getName());
-        return authorRepository.save(author);
+        return authorService.createAuthor(authorWrapper.getName());
     }
+
+    public Author addBook(Long authorId, String isbn) {
+        return authorService.addBookToAuthor(authorId, isbn);
+    }
+
 }

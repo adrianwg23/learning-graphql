@@ -34,9 +34,7 @@ public class BookMutationResolver implements GraphQLMutationResolver {
         if (authorOptional.isPresent() && bookOptional.isPresent()) {
             Book book = bookOptional.get();
             Author author = authorOptional.get();
-            author.addBook(book);
             book.addAuthor(author);
-            authorRepository.save(author);
             bookRepository.save(book);
             return bookOptional.get();
         }

@@ -23,6 +23,7 @@ type Mutation {
     createBook(book: BookWrapper): Book
     createAuthor(author: AuthorWrapper): Author
     addAuthor(authorId: Int, isbn: String): Book
+    addBook(authorId: Int, isbn: String): Author
 }
 
 input AuthorWrapper {
