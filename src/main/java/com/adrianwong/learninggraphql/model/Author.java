@@ -19,7 +19,8 @@ public class Author {
     private String name;
     @ManyToMany(
             cascade = { CascadeType.PERSIST, CascadeType.MERGE },
-            mappedBy = "authors"
+            mappedBy = "authors",
+            fetch = FetchType.EAGER
     )
     private Set<Book> books;
 
