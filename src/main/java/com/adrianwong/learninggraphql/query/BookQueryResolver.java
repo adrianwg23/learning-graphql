@@ -1,5 +1,6 @@
 package com.adrianwong.learninggraphql.query;
 
+import com.adrianwong.learninggraphql.exception.ResourceNotFoundException;
 import com.adrianwong.learninggraphql.model.Book;
 import com.adrianwong.learninggraphql.repository.BookRepository;
 import graphql.kickstart.tools.GraphQLQueryResolver;
@@ -9,6 +10,7 @@ import graphql.schema.DataFetchingEnvironment;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class BookQueryResolver implements GraphQLQueryResolver {
@@ -25,6 +27,8 @@ public class BookQueryResolver implements GraphQLQueryResolver {
     }
 
     public Book getBook(String isbn) {
-        return bookRepository.findById(isbn).get();
+        Optional<Book> book = bookRepository.findById(isbn);
+        if (book.isEmpty()) throw new ResourceNotFoundException("There is no book with isbn " + isbn);
+        return book.get();
     }
 }

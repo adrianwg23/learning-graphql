@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -24,5 +25,12 @@ public class Author {
 
     public Author(String name) {
         this.name = name;
+    }
+
+    public void addBook(Book book) {
+        if (this.books == null) {
+            this.books = new HashSet<>();
+        }
+        this.books.add(book);
     }
 }
