@@ -19,7 +19,11 @@ public class BookQueryResolver implements GraphQLQueryResolver {
         this.bookService = bookService;
     }
 
-    public Connection<Book> books(int first, String after, DataFetchingEnvironment env) {
+    public List<Book> books() {
+        return bookService.getAllBooks();
+    }
+
+    public Connection<Book> booksPaginated(int first, String after, DataFetchingEnvironment env) {
         List<Book> books = bookService.getAllBooks();
         return new SimpleListConnection<>(books).get(env);
     }
